@@ -1,0 +1,19 @@
+# IDE files
+.vscode/
+.idea/
+
+# OS files  
+Thumbs.db
+.DS_Store
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+
+# Logs
+*.log
+
+# Cache
+.cache/
