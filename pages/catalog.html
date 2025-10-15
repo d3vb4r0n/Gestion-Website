@@ -1,153 +1,394 @@
-<!doctype html>
-<html>
-	<head>
-		<meta HTTP-EQUIV="Content-Type" CONTENT ="text/html; charset=utf-8">
-		<title>Каталог услуг - Гестион</title>
-	</head>
-	<body>
-		<table border="0" width="900" cellpadding="0" cellspacing="0" align="center" bgcolor="ff8000">
-			<tbody>
-				<tr>
-					<td width="150" align="center"><img src="../images/logo.png" weight="100" height="100" align="center"></td>
-					<td align="center"> <h1>Гестион</h1> <h2>Юридическая помощь</h2></td>
-					<td width="200">
-						<table cellpadding="5" width="100%">
-							<tbody>
-								<tr>
-									<td align="right">
-										<p style="margin: 0;">логин:</p>
-									</td>
-									<td align="right">
-										<input type="text">
-									</td>
-								</tr>
-								<tr>
-									<td align="right">
-										<p style="margin: 0;">пароль:</p>
-									</td>
-									<td align="right">
-										<input type="password">
-									</td>
-								</tr>
-								<tr>
-									<td align="right"> 
-										<a href="#">регистрация</a>
-									</td>
-									<td align="left">
-										<input type="submit" value="войти">
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</td>
-				</tr>
-			</tbody>	
-		</table>
-		<table border="0" width="900" cellpadding="5" cellpadding="0" align="center" bgcolor="#FFBB34">
-	<tr>
-	<td align="center"><a href="#">Раздел 1</a></td>
-	<td align="center"><a href="#">Раздел 2</a></td>
-	<td align="center"><a href="#">Раздел 3</a></td>
-	<td align="center"><a href="#">Раздел 4</a></td>
-	</tr>
-</table> 
-<BR>
-<table border="0" width="900" cellpadding="5" cellpadding="0" align="center">
-	<tr>
-		<td width="150" cellpadding="5" valign="top" align="center" bgcolor="#ff8000">
-			<a href="../index.html">Главная</a><BR>
-			<a href="about.html">О нас</a><BR>
-			<a href="catalog.html">Каталог услуг</a><BR>
-			<a href="contacts.html">Контакты</a>
-		<td>
-		<td>
-			<img src="../images/saul.jpg" weight="100" height="100" align="left">
-			<H1 align="center">Каталог услуг</H1>
-			<p>
-				Мы предоставляем полный спектр юридических услуг для <B>физических</B> и <B>юридических лиц</B>. Наша команда готова помочь в решении любых правовых вопросов. Консультации проводятся опытными специалистами.
-			</p>
-			<p>Стоимость услуг зависит от сложности дела. <I>Первичная консультация</I> предоставляется бесплатно. Мы работаем по фиксированным тарифам. <B>Качество</B> гарантируем договором.</p>
-			<h2>Прайс-лист:</h2>
-			<table border="3" cellpadding="20" cellspacing="0">
- 			<tr>
-				<td colspan=2 align="center"><font size="2">Консультации</font></td>
-				<td align="center"><font size="2">Цена</font></td>
-				<td colspan=2 align="center"><font size="2">Сроки</font></td>
-			</tr>
-			<tr>
-				<td><font size="2">Устная</font></td>
-				<td><font size="2">Письменная</font></td>
-				<td><font size="2">от 3000₽</font></td>
-				<td><font size="2">1 день</font></td>
-				<td><font size="2">3 дня</font></td>
-			</tr>
-			<tr>
-				<td colspan=5 align="center"><font size="2">Скидки постоянным клиентам</font></td>
-			</tr>
-			</table><BR>
-			<h2>Основные услуги:</h2>
-			<ul type="square">
-				<li>Юридическое сопровождение
-				<li>Представительство в судах
-				<li>Составление документов
-			</ul>
-			<ol type="1">
-				<li>Гражданские дела
-				<li>Семейные споры
-				<li>Трудовые конфликты
-			</ol>
-			<ol type="1">
-				<li>Дополнительные услуги
-				</li>
-				<li>Корпоративное право
-					<ul type="circle">
-						<li>Регистрация ООО
-						</li>
-						<li>Ликвидация фирм
-						</li>
-					</ul>
-				<li>Налоговое консультирование
-			</ol>
-			Мы гарантируем <B>профессиональный подход</B> к каждому делу. Все услуги оказываются в строгом соответствии с законодательством. <I>Конфиденциальность</I> обеспечивается на всех этапах работы.
-			
-		</td>
- 		<td width="95" cellpadding="5" valign="top" align="center" bgcolor="#ff8000">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог услуг - Гестион</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Хедер -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="../images/logo.png" alt="Логотип Гестион">
+                    <div class="company-info">
+                        <h1>Гестион</h1>
+                        <h2>Юридическая помощь</h2>
+                    </div>
+                </div>
+                
+                <div class="auth-section">
+                    <form class="auth-form" onsubmit="return false;">
+                        <input type="email" placeholder="Email" id="login-email">
+                        <input type="password" placeholder="Пароль" id="login-password">
+                        <div class="auth-actions">
+                            <a href="#" onclick="openRegistrationModal(); return false;">Регистрация</a>
+                            <input type="submit" value="Войти">
+                        </div>
+                    </form>
+                    <div class="search-section">
+                        <div class="search-box">
+                            <input type="text" placeholder="Поиск по сайту..." id="search">
+                            <button type="button">Найти</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-			<a href="https://www.consultant.ru/" target="_blank"><img src="../images/consultant.png" width="80" height="60" alt="КонсультантПлюс" border="0"></a><BR><BR>
-			<a href="https://www.garant.ru/" target="_blank"><img src="../images/garant.png" width="80" height="60" alt="Гарант" border="0"></a><BR><BR>
-			<a href="https://www.gosuslugi.ru/" target="_blank"><img src="../images/gos.png" width="80" height="60" alt="Госуслуги" border="0"></a><BR><BR><BR>
-		</td>
-	</tr>
-</table>
-<BR>
-<table border="0" width="900" cellpadding="15" cellspacing="0" align="center" bgcolor="#FFBB34">
-	<tr>
-		<td align="center">
-			<table border="0" width="860" cellpadding="0" cellspacing="0">
-				<tr>
-					<td width="270" align="left">
-						<B>Контактная информация:</B><BR>
-						Тел.: +7 (916) 777-77-77<BR>
-						Email: info@gestion.ru<BR>
-						Адрес: г. Москва, Вадковский пер., 3Ас1
-					</td>
-					<td width="320" align="center">
-						<B>Юридическая компания "Гестион"</B><BR>
-						Лицензия № 12345 от 07.11.2004<BR>
-						Все права защищены © 2025<BR>
-						<I>Профессиональная юридическая помощь</I>
-					</td>
-					<td width="270" align="right">
-						<B>Режим работы:</B><BR>
-						Пн-Пт: 9:00 - 18:00<BR>
-						Сб: шаббат<BR>
-						Вс: выходной
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>
+    <!-- Навигация по категориям -->
+    <nav class="categories-nav">
+        <div class="container">
+            <div class="categories-list">
+                <a href="#corporate">Корпоративное право</a>
+                <a href="#family">Семейное право</a>
+                <a href="#civil">Гражданское право</a>
+            </div>
+        </div>
+    </nav>
 
-	</body>
+    <!-- Основной контент -->
+    <div class="main-wrapper">
+        <div class="container">
+            <div class="main-content">
+                <!-- Сайдбар -->
+                <aside class="sidebar">
+                    <nav>
+                        <a href="../index.html">Главная</a>
+                        <a href="about.html">О нас</a>
+                        <a href="catalog.html" class="active">Каталог услуг</a>
+                        <a href="contacts.html">Контакты</a>
+                    </nav>
+                </aside>
+
+                <!-- Контент страницы -->
+                <main class="page-content">
+                    <h1>Каталог услуг</h1>
+                    
+                    <p>
+                        Мы предоставляем полный спектр юридических услуг для <strong>физических</strong> и <strong>юридических лиц</strong>. Наша команда готова помочь в решении любых правовых вопросов. Консультации проводятся опытными специалистами.
+                    </p>
+
+                    <!-- Категория 1: Корпоративное право -->
+                    <div id="corporate" class="services-category">
+                        <h2>Корпоративное право</h2>
+                        <div class="services-grid">
+                            <!-- Услуга 1 -->
+                            <div class="service-card">
+                                <div class="service-card-image">🏢</div>
+                                <div class="service-card-content">
+                                    <h3>Регистрация бизнеса</h3>
+                                    <p class="service-card-price">от 15 000 ₽</p>
+                                    <p class="service-card-brief">Полное юридическое сопровождение регистрации ООО, ИП, АО</p>
+                                </div>
+                                <div class="service-card-details">
+                                    <div>
+                                        <h3>Регистрация бизнеса</h3>
+                                        <p><strong>Цена:</strong> от 15 000 ₽</p>
+                                        <p>Комплексная услуга по регистрации юридических лиц и индивидуальных предпринимателей.</p>
+                                        <ul>
+                                            <li>Подготовка документов</li>
+                                            <li>Подача в налоговую</li>
+                                            <li>Получение выписки ЕГРЮЛ/ЕГРИП</li>
+                                            <li>Открытие расчетного счета</li>
+                                        </ul>
+                                        <p><strong>Срок:</strong> 5-7 рабочих дней</p>
+                                    </div>
+                                    <button class="order-button" onclick="orderService('Регистрация бизнеса')">Заказать услугу</button>
+                                </div>
+                            </div>
+
+                            <!-- Услуга 2 -->
+                            <div class="service-card">
+                                <div class="service-card-image">📋</div>
+                                <div class="service-card-content">
+                                    <h3>Корпоративные договоры</h3>
+                                    <p class="service-card-price">от 20 000 ₽</p>
+                                    <p class="service-card-brief">Разработка и проверка договоров для бизнеса</p>
+                                </div>
+                                <div class="service-card-details">
+                                    <div>
+                                        <h3>Корпоративные договоры</h3>
+                                        <p><strong>Цена:</strong> от 20 000 ₽</p>
+                                        <p>Профессиональная подготовка любых корпоративных договоров с учетом специфики вашего бизнеса.</p>
+                                        <ul>
+                                            <li>Договоры поставки</li>
+                                            <li>Договоры подряда</li>
+                                            <li>Агентские договоры</li>
+                                            <li>Лицензионные соглашения</li>
+                                        </ul>
+                                        <p><strong>Срок:</strong> 3-5 рабочих дней</p>
+                                    </div>
+                                    <button class="order-button" onclick="orderService('Корпоративные договоры')">Заказать услугу</button>
+                                </div>
+                            </div>
+
+                            <!-- Услуга 3 -->
+                            <div class="service-card">
+                                <div class="service-card-image">⚖️</div>
+                                <div class="service-card-content">
+                                    <h3>Арбитражные споры</h3>
+                                    <p class="service-card-price">от 50 000 ₽</p>
+                                    <p class="service-card-brief">Представительство в арбитражных судах</p>
+                                </div>
+                                <div class="service-card-details">
+                                    <div>
+                                        <h3>Арбитражные споры</h3>
+                                        <p><strong>Цена:</strong> от 50 000 ₽</p>
+                                        <p>Защита интересов вашей компании в арбитражных судах всех инстанций.</p>
+                                        <ul>
+                                            <li>Взыскание задолженности</li>
+                                            <li>Споры по договорам</li>
+                                            <li>Корпоративные конфликты</li>
+                                            <li>Налоговые споры</li>
+                                        </ul>
+                                        <p><strong>Срок:</strong> зависит от сложности дела</p>
+                                    </div>
+                                    <button class="order-button" onclick="orderService('Арбитражные споры')">Заказать услугу</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Категория 2: Семейное право -->
+                    <div id="family" class="services-category">
+                        <h2>Семейное право</h2>
+                        <div class="services-grid">
+                            <!-- Услуга 4 -->
+                            <div class="service-card">
+                                <div class="service-card-image">💍</div>
+                                <div class="service-card-content">
+                                    <h3>Брачный договор</h3>
+                                    <p class="service-card-price">от 10 000 ₽</p>
+                                    <p class="service-card-brief">Составление и нотариальное заверение брачного договора</p>
+                                </div>
+                                <div class="service-card-details">
+                                    <div>
+                                        <h3>Брачный договор</h3>
+                                        <p><strong>Цена:</strong> от 10 000 ₽</p>
+                                        <p>Защитите имущественные интересы с помощью грамотно составленного брачного договора.</p>
+                                        <ul>
+                                            <li>Консультация юриста</li>
+                                            <li>Составление проекта договора</li>
+                                            <li>Согласование условий</li>
+                                            <li>Сопровождение у нотариуса</li>
+                                        </ul>
+                                        <p><strong>Срок:</strong> 2-3 рабочих дня</p>
+                                    </div>
+                                    <button class="order-button" onclick="orderService('Брачный договор')">Заказать услугу</button>
+                                </div>
+                            </div>
+
+                            <!-- Услуга 5 -->
+                            <div class="service-card">
+                                <div class="service-card-image">👨‍👩‍👧‍👦</div>
+                                <div class="service-card-content">
+                                    <h3>Развод и раздел имущества</h3>
+                                    <p class="service-card-price">от 25 000 ₽</p>
+                                    <p class="service-card-brief">Юридическое сопровождение бракоразводного процесса</p>
+                                </div>
+                                <div class="service-card-details">
+                                    <div>
+                                        <h3>Развод и раздел имущества</h3>
+                                        <p><strong>Цена:</strong> от 25 000 ₽</p>
+                                        <p>Профессиональная помощь в расторжении брака и справедливом разделе совместно нажитого имущества.</p>
+                                        <ul>
+                                            <li>Подготовка иска о разводе</li>
+                                            <li>Раздел имущества</li>
+                                            <li>Представительство в суде</li>
+                                            <li>Определение места жительства детей</li>
+                                        </ul>
+                                        <p><strong>Срок:</strong> от 1 месяца</p>
+                                    </div>
+                                    <button class="order-button" onclick="orderService('Развод и раздел имущества')">Заказать услугу</button>
+                                </div>
+                            </div>
+
+                            <!-- Услуга 6 -->
+                            <div class="service-card">
+                                <div class="service-card-image">👶</div>
+                                <div class="service-card-content">
+                                    <h3>Алименты и опека</h3>
+                                    <p class="service-card-price">от 15 000 ₽</p>
+                                    <p class="service-card-brief">Взыскание алиментов, оформление опеки</p>
+                                </div>
+                                <div class="service-card-details">
+                                    <div>
+                                        <h3>Алименты и опека</h3>
+                                        <p><strong>Цена:</strong> от 15 000 ₽</p>
+                                        <p>Защита прав детей и законных интересов родителей в вопросах алиментов и опеки.</p>
+                                        <ul>
+                                            <li>Взыскание алиментов</li>
+                                            <li>Изменение размера алиментов</li>
+                                            <li>Оформление опеки</li>
+                                            <li>Лишение родительских прав</li>
+                                        </ul>
+                                        <p><strong>Срок:</strong> 2-4 недели</p>
+                                    </div>
+                                    <button class="order-button" onclick="orderService('Алименты и опека')">Заказать услугу</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Категория 3: Гражданское право -->
+                    <div id="civil" class="services-category">
+                        <h2>Гражданское право</h2>
+                        <div class="services-grid">
+                            <!-- Услуга 7 -->
+                            <div class="service-card">
+                                <div class="service-card-image">🏠</div>
+                                <div class="service-card-content">
+                                    <h3>Сделки с недвижимостью</h3>
+                                    <p class="service-card-price">от 30 000 ₽</p>
+                                    <p class="service-card-brief">Юридическое сопровождение купли-продажи недвижимости</p>
+                                </div>
+                                <div class="service-card-details">
+                                    <div>
+                                        <h3>Сделки с недвижимостью</h3>
+                                        <p><strong>Цена:</strong> от 30 000 ₽</p>
+                                        <p>Безопасные сделки с недвижимостью под контролем опытных юристов.</p>
+                                        <ul>
+                                            <li>Проверка чистоты сделки</li>
+                                            <li>Подготовка договора</li>
+                                            <li>Сопровождение регистрации</li>
+                                            <li>Представительство в Росреестре</li>
+                                        </ul>
+                                        <p><strong>Срок:</strong> 7-10 рабочих дней</p>
+                                    </div>
+                                    <button class="order-button" onclick="orderService('Сделки с недвижимостью')">Заказать услугу</button>
+                                </div>
+                            </div>
+
+                            <!-- Услуга 8 -->
+                            <div class="service-card">
+                                <div class="service-card-image">📄</div>
+                                <div class="service-card-content">
+                                    <h3>Наследственные дела</h3>
+                                    <p class="service-card-price">от 20 000 ₽</p>
+                                    <p class="service-card-brief">Оформление наследства, споры о наследстве</p>
+                                </div>
+                                <div class="service-card-details">
+                                    <div>
+                                        <h3>Наследственные дела</h3>
+                                        <p><strong>Цена:</strong> от 20 000 ₽</p>
+                                        <p>Помощь в получении наследства и разрешении наследственных споров.</p>
+                                        <ul>
+                                            <li>Оформление наследства</li>
+                                            <li>Составление завещания</li>
+                                            <li>Споры о наследстве</li>
+                                            <li>Восстановление сроков принятия наследства</li>
+                                        </ul>
+                                        <p><strong>Срок:</strong> от 6 месяцев</p>
+                                    </div>
+                                    <button class="order-button" onclick="orderService('Наследственные дела')">Заказать услугу</button>
+                                </div>
+                            </div>
+
+                            <!-- Услуга 9 -->
+                            <div class="service-card">
+                                <div class="service-card-image">💰</div>
+                                <div class="service-card-content">
+                                    <h3>Взыскание долгов</h3>
+                                    <p class="service-card-price">от 18 000 ₽</p>
+                                    <p class="service-card-brief">Взыскание задолженности в судебном порядке</p>
+                                </div>
+                                <div class="service-card-details">
+                                    <div>
+                                        <h3>Взыскание долгов</h3>
+                                        <p><strong>Цена:</strong> от 18 000 ₽</p>
+                                        <p>Эффективное взыскание долгов через суд и исполнительное производство.</p>
+                                        <ul>
+                                            <li>Досудебная претензия</li>
+                                            <li>Подача иска в суд</li>
+                                            <li>Представительство в суде</li>
+                                            <li>Сопровождение исполнительного производства</li>
+                                        </ul>
+                                        <p><strong>Срок:</strong> от 2 месяцев</p>
+                                    </div>
+                                    <button class="order-button" onclick="orderService('Взыскание долгов')">Заказать услугу</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Юридическая компания "Гестион"</h3>
+                    <p>Лицензия № 12345 от 07.11.2004</p>
+                    <p>Все права защищены © 2025</p>
+                </div>
+                <div class="footer-contacts">
+                    <p><strong>Контактная информация:</strong></p>
+                    <p>Тел.: <a href="tel:+79167777777">+7 (916) 777-77-77</a></p>
+                    <p>Email: <a href="mailto:info@gestion.ru">info@gestion.ru</a></p>
+                    <p>Адрес: г. Москва, Вадковский пер., 3Ас1</p>
+                </div>
+                <div class="footer-schedule">
+                    <p><strong>Режим работы:</strong></p>
+                    <p>Пн-Пт: 9:00 - 18:00</p>
+                    <p>Сб: шаббат</p>
+                    <p>Вс: выходной</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Сайт использует файлы cookie для улучшения качества обслуживания</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно регистрации -->
+    <div id="registrationModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeRegistrationModal()">&times;</button>
+            <h2>Регистрация</h2>
+            <form class="form-container" onsubmit="handleRegistration(event)" style="padding: 0;">
+                <div class="form-group">
+                    <label for="reg-name">Полное имя *</label>
+                    <input type="text" id="reg-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg-email">Email *</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg-phone">Телефон *</label>
+                    <input type="tel" id="reg-phone" value="+7" required pattern="\+7\d{10}" title="Введите номер в формате +7XXXXXXXXXX">
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg-password">Пароль *</label>
+                    <input type="password" id="reg-password" required minlength="6">
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg-password-confirm">Подтвердите пароль *</label>
+                    <input type="password" id="reg-password-confirm" required minlength="6">
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="reg-agreement" required>
+                    <label for="reg-agreement">Регистрируясь вы соглашаетесь на <a href="#" onclick="return false;">условия сервиса</a> и <a href="#" onclick="return false;">обработку персональных данных</a> *</label>
+                </div>
+                
+                <button type="submit" class="form-submit">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
 </html>
