@@ -19,15 +19,23 @@
                     </div>
                 </div>
                 
-                <div class="auth-section">
-                    <form class="auth-form" onsubmit="return false;">
-                        <input type="email" placeholder="Email" id="login-email">
+                <div class="auth-section" id="auth-section">
+                    <!-- Форма входа (показывается когда НЕ авторизован) -->
+                    <form class="auth-form" id="login-form" onsubmit="handleLogin(event)" style="display: none;">
+                        <input type="text" placeholder="Username или Email" id="login-username">
                         <input type="password" placeholder="Пароль" id="login-password">
                         <div class="auth-actions">
                             <a href="#" onclick="openRegistrationModal(); return false;">Регистрация</a>
                             <input type="submit" value="Войти">
                         </div>
                     </form>
+                    
+                    <!-- Информация о пользователе (показывается когда авторизован) -->
+                    <div class="user-info" id="user-info" style="display: none;">
+                        <span class="user-greeting">Привет, <strong id="user-name">Пользователь</strong>!</span>
+                        <button onclick="handleLogout()" class="btn-logout">Выйти</button>
+                    </div>
+                    
                     <div class="search-section">
                         <div class="search-box">
                             <input type="text" placeholder="Поиск по сайту..." id="search">
@@ -57,7 +65,7 @@
                 <!-- Сайдбар -->
                 <aside class="sidebar">
                     <nav>
-                        <a href="../index.html">Главная</a>
+                        <a href="mainpage.html">Главная</a>
                         <a href="about.html">О нас</a>
                         <a href="catalog.html">Каталог услуг</a>
                         <a href="contacts.html" class="active">Контакты</a>
@@ -144,7 +152,7 @@
                         
                         <div class="form-group checkbox-group">
                             <input type="checkbox" id="feedback-agreement" required>
-                            <label for="feedback-agreement">Отправляя сообщение вы соглашаетесь на <a href="#" onclick="return false;">условия сервиса</a> и <a href="#" onclick="return false;">обработку персональных данных</a> *</label>
+                            <label for="feedback-agreement">Отправляя сообщение вы соглашаетесь на <a href="terms.html" target="_blank">условия сервиса и обработку персональных данных</a> *</label>
                         </div>
                         
                         <button type="submit" class="form-submit">Отправить сообщение</button>
@@ -165,6 +173,7 @@
                 <div class="footer-info">
                     <h3>Юридическая компания "Гестион"</h3>
                     <p>Лицензия № 12345 от 07.11.2004</p>
+                    <p>ИНН: 123456654321</p>
                     <p>Все права защищены © 2025</p>
                 </div>
                 <div class="footer-contacts">
@@ -181,7 +190,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>Сайт использует файлы cookie для улучшения качества обслуживания</p>
+                <p style="text-align: center;">Сайт использует файлы cookie для улучшения качества обслуживания</p>
             </div>
         </div>
     </footer>
@@ -219,7 +228,7 @@
                 
                 <div class="form-group checkbox-group">
                     <input type="checkbox" id="reg-agreement" required>
-                    <label for="reg-agreement">Регистрируясь вы соглашаетесь на <a href="#" onclick="return false;">условия сервиса</a> и <a href="#" onclick="return false;">обработку персональных данных</a> *</label>
+                    <label for="reg-agreement">Регистрируясь вы соглашаетесь на <a href="terms.html" target="_blank">условия сервиса и обработку персональных данных</a> *</label>
                 </div>
                 
                 <button type="submit" class="form-submit">Зарегистрироваться</button>
@@ -227,6 +236,8 @@
         </div>
     </div>
 
+    <script src="../js/api-integration.js"></script>
+    <script src="../js/auth.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

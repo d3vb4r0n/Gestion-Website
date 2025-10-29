@@ -1,19 +1,29 @@
-# IDE files
-.vscode/
+# Application config with sensitive data
+backend/gestion/src/main/resources/application.yml
+
+# Gradle
+backend/gestion/.gradle/
+backend/gestion/build/
+backend/gestion/gradle-app.setting
+backend/gestion/.gradletasknamecache
+
+# IDE
 .idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
 
-# OS files  
-Thumbs.db
+# OS
 .DS_Store
-Desktop.ini
-
-# Temporary files
-*.tmp
-*.temp
-~$*
+Thumbs.db
 
 # Logs
 *.log
 
-# Cache
-.cache/
+# Node modules (if any)
+node_modules/
+
+backend/gestion/*.md
+backend/gestion/*.sh

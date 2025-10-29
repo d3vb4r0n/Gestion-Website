@@ -22,7 +22,7 @@ window.onclick = function(event) {
 }
 
 // Обработка формы регистрации
-function handleRegistration(event) {
+async function handleRegistration(event) {
     event.preventDefault();
     
     const name = document.getElementById('reg-name').value;
@@ -44,30 +44,68 @@ function handleRegistration(event) {
         return;
     }
     
-    // Здесь будет отправка данных на сервер
-    // Пока просто показываем сообщение
-    alert('Спасибо за регистрацию, ' + name + '!\nПисьмо с подтверждением отправлено на ' + email);
-    
-    // Закрываем модальное окно и очищаем форму
-    closeRegistrationModal();
-    event.target.reset();
+    // Отправка данных на сервер
+    try {
+        const formData = new FormData();
+        formData.set('username', name);
+        formData.set('email', email);
+        formData.set('password', password);
+        
+        if (typeof registerUser === 'function') {
+            await registerUser(formData);
+            // Закрываем модальное окно и очищаем форму
+            closeRegistrationModal();
+            event.target.reset();
+        } else {
+            // Фоллбэк если api-integration.js не загружен
+            alert('Спасибо за регистрацию, ' + name + '!\nПисьмо с подтверждением отправлено на ' + email);
+            closeRegistrationModal();
+            event.target.reset();
+        }
+    } catch (error) {
+        console.error('Registration error:', error);
+        alert('Ошибка при регистрации. Попробуйте позже.');
+    }
 }
 
 // Обработка формы отзыва на странице контактов
-function handleFeedback(event) {
+async function handleFeedback(event) {
     event.preventDefault();
     
     const name = document.getElementById('feedback-name').value;
     const email = document.getElementById('feedback-email').value;
+    const phone = document.getElementById('feedback-phone')?.value || '';
     const service = document.getElementById('feedback-service').value;
     const message = document.getElementById('feedback-message').value;
     
-    // Здесь будет отправка данных на сервер
-    // Пока просто показываем сообщение
-    alert('Спасибо за ваш отзыв, ' + name + '!\nМы свяжемся с вами по адресу ' + email);
-    
-    // Очищаем форму
-    event.target.reset();
+    // Отправка данных на сервер
+    try {
+        const formData = new FormData();
+        formData.set('name', name);
+        formData.set('email', email);
+        formData.set('phone', phone);
+        formData.set('message', service ? `Услуга: ${service}\n\n${message}` : message);
+        
+        if (typeof submitReview === 'function') {
+            await submitReview(formData);
+            // Очистка формы после успешной отправки
+            if (event.target && typeof event.target.reset === 'function') {
+                event.target.reset();
+                // Восстанавливаем +7 в поле телефона
+                const phoneInput = document.getElementById('feedback-phone');
+                if (phoneInput) phoneInput.value = '+7';
+            }
+        } else {
+            // Фоллбэк если api-integration.js не загружен
+            alert('Спасибо за ваш отзыв, ' + name + '!\nМы свяжемся с вами по адресу ' + email);
+            if (event.target && typeof event.target.reset === 'function') {
+                event.target.reset();
+            }
+        }
+    } catch (error) {
+        console.error('Feedback error:', error);
+        alert('Ошибка при отправке отзыва. Попробуйте позже.');
+    }
 }
 
 // Обработка заказа услуги
