@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гестион - Юридическая компания</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Хедер -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="../images/logo.png" alt="Логотип Гестион">
+                    <div class="company-info">
+                        <h1>Гестион</h1>
+                        <h2>Юридическая помощь</h2>
+                    </div>
+                </div>
+                
+                <div class="auth-section" id="auth-section">
+                    <!-- Форма входа (показывается когда НЕ авторизован) -->
+                    <form class="auth-form" id="login-form" onsubmit="handleLogin(event)" style="display: none;">
+                        <input type="text" placeholder="Username или Email" id="login-username">
+                        <input type="password" placeholder="Пароль" id="login-password">
+                        <div class="auth-actions">
+                            <a href="#" onclick="openRegistrationModal(); return false;">Регистрация</a>
+                            <input type="submit" value="Войти">
+                        </div>
+                    </form>
+                    
+                    <!-- Информация о пользователе (показывается когда авторизован) -->
+                    <div class="user-info" id="user-info" style="display: none;">
+                        <span class="user-greeting">Привет, <strong id="user-name">Пользователь</strong>!</span>
+                        <button onclick="handleLogout()" class="btn-logout">Выйти</button>
+                    </div>
+                    
+                    <div class="search-section">
+                        <div class="search-box">
+                            <input type="text" placeholder="Поиск по сайту..." id="search">
+                            <button type="button">Найти</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Навигация по категориям -->
+    <nav class="categories-nav">
+        <div class="container">
+            <div class="categories-list">
+                <a href="catalog.html#corporate">Корпоративное право</a>
+                <a href="catalog.html#family">Семейное право</a>
+                <a href="catalog.html#civil">Гражданское право</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="main-wrapper">
+        <div class="container">
+            <div class="main-content">
+                <!-- Сайдбар -->
+                <aside class="sidebar">
+                    <nav>
+                        <a href="mainpage.html" class="active">Главная</a>
+                        <a href="about.html">О нас</a>
+                        <a href="catalog.html">Каталог услуг</a>
+                        <a href="contacts.html">Контакты</a>
+                    </nav>
+                </aside>
+
+                <!-- Контент страницы -->
+                <main class="page-content">
+                    <h1>Добро пожаловать в "Гестион"</h1>
+                    
+                    <div style="display: flex; gap: 30px; align-items: flex-start; margin-bottom: 25px;">
+                        <div style="flex: 1;">
+                            <p>
+                                Юридическая компания <strong>"Гестион"</strong> - ваш надёжный партнёр в решении правовых вопросов любой сложности. Мы предоставляем профессиональную юридическую помощь физическим и юридическим лицам с <strong>2004 года</strong>.
+                            </p>
+                            
+                            <p>
+                                Наша команда объединяет опытных адвокатов и юристов, которые специализируются в различных областях права. Мы понимаем, что каждая ситуация уникальна, поэтому предлагаем <em>индивидуальный подход</em> к каждому клиенту.
+                            </p>
+                        </div>
+                        
+                        <div style="flex-shrink: 0;">
+                            <img src="../images/logo.png" alt="Логотип Гестион" style="width: 200px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                        </div>
+                    </div>
+
+                    <h2>Почему выбирают нас?</h2>
+                    <div style="background: #f5f5dc; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 2px solid #dc143c;">
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li style="margin-bottom: 12px;">✓ <strong>Более 20 лет успешной практики</strong> на рынке юридических услуг</li>
+                            <li style="margin-bottom: 12px;">✓ <strong>500+ довольных клиентов</strong>, которые доверили нам свои дела</li>
+                            <li style="margin-bottom: 12px;">✓ <strong>95% выигранных дел</strong> - результат, который говорит сам за себя</li>
+                            <li style="margin-bottom: 12px;">✓ <strong>Конфиденциальность гарантирована</strong> - ваши данные под надёжной защитой</li>
+                            <li style="margin-bottom: 12px;">✓ <strong>Индивидуальный подход</strong> к каждому клиенту и делу</li>
+                        </ul>
+                    </div>
+
+                    <h2>Наши основные направления</h2>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 25px;">
+                        <div style="background: #dc143c; padding: 20px; border-radius: 8px; color: white;">
+                            <h3 style="margin-top: 0; color: white;">Корпоративное право</h3>
+                            <p style="margin-bottom: 0; text-align: left;">Сопровождение бизнеса, регистрация компаний, корпоративные споры, договорное право</p>
+                        </div>
+                        
+                        <div style="background: #000000; padding: 20px; border-radius: 8px; color: white;">
+                            <h3 style="margin-top: 0; color: #dc143c;">Семейное право</h3>
+                            <p style="margin-bottom: 0; text-align: left;">Разводы, алименты, раздел имущества, усыновление, установление отцовства</p>
+                        </div>
+                        
+                        <div style="background: #f5f5dc; padding: 20px; border-radius: 8px; color: #000000; border: 2px solid #dc143c;">
+                            <h3 style="margin-top: 0; color: #dc143c;">Гражданское право</h3>
+                            <p style="margin-bottom: 0; text-align: left;">Имущественные споры, защита прав потребителей, наследственные дела, жилищные вопросы</p>
+                        </div>
+                    </div>
+
+                    <h2>Форматы работы</h2>
+                    <div style="background: #ffffff; border: 2px solid #dc143c; padding: 20px; margin-bottom: 25px; border-radius: 4px;">
+                        <p style="margin: 0 0 15px 0;"><strong style="color: #dc143c;">Мы предлагаем удобные форматы консультаций:</strong></p>
+                        <ol style="margin: 0;">
+                            <li style="margin-bottom: 8px;"><strong>Очные консультации</strong> - личная встреча в нашем офисе или выездная консультация</li>
+                            <li style="margin-bottom: 8px;"><strong>Телефонные консультации</strong> - оперативные ответы на ваши вопросы</li>
+                            <li style="margin-bottom: 8px;"><strong>Онлайн-консультации</strong> - удобный формат видеосвязи из любой точки мира</li>
+                            <li style="margin-bottom: 8px;"><strong>Письменные консультации</strong> - детальный разбор ситуации с юридическим заключением</li>
+                        </ol>
+                    </div>
+
+                    <h2>Наши услуги</h2>
+                    <p>
+                        Мы оказываем полный спектр юридических услуг - от консультаций до представительства в судах всех инстанций:
+                    </p>
+                    <ul>
+                        <li><em>Юридические консультации</em> по всем отраслям права</li>
+                        <li><em>Составление договоров</em> и других правовых документов</li>
+                        <li><em>Представительство в судах</em> - арбитражных, общей юрисдикции</li>
+                        <li><em>Правовая экспертиза</em> документов и сделок</li>
+                        <li><em>Досудебное урегулирование</em> споров и конфликтов</li>
+                        <li><em>Абонентское юридическое обслуживание</em> для бизнеса</li>
+                    </ul>
+                    
+                    <div style="background: #f5f5dc; border: 2px solid #dc143c; padding: 20px; border-radius: 8px; margin-top: 25px;">
+                        <p style="margin: 0; text-align: center; font-size: 1.1em;">
+                            <strong style="color: #dc143c;">Первая консультация - бесплатно!</strong><br>
+                            <span style="font-size: 0.9em;">Свяжитесь с нами любым удобным способом, и мы поможем разобраться в вашей ситуации</span>
+                        </p>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Юридическая компания "Гестион"</h3>
+                    <p>Лицензия № 12345 от 07.11.2004</p>
+                    <p>ИНН: 123456654321</p>
+                    <p>Все права защищены © 2025</p>
+                </div>
+                <div class="footer-contacts">
+                    <p><strong>Контактная информация:</strong></p>
+                    <p>Тел.: <a href="tel:+79167777777">+7 (916) 777-77-77</a></p>
+                    <p>Email: <a href="mailto:info@gestion.ru">info@gestion.ru</a></p>
+                    <p>Адрес: г. Москва, Вадковский пер., 3Ас1</p>
+                </div>
+                <div class="footer-schedule">
+                    <p><strong>Режим работы:</strong></p>
+                    <p>Пн-Пт: 9:00 - 18:00</p>
+                    <p>Сб: шаббат</p>
+                    <p>Вс: выходной</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p style="text-align: center;">Сайт использует файлы cookie для улучшения качества обслуживания</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно регистрации -->
+    <div id="registrationModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeRegistrationModal()">&times;</button>
+            <h2>Регистрация</h2>
+            <form class="form-container" onsubmit="handleRegistration(event)" style="padding: 0;">
+                <div class="form-group">
+                    <label for="reg-name">Полное имя *</label>
+                    <input type="text" id="reg-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg-email">Email *</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg-phone">Телефон *</label>
+                    <input type="tel" id="reg-phone" value="+7" required pattern="\+7\d{10}" title="Введите номер в формате +7XXXXXXXXXX">
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg-password">Пароль *</label>
+                    <input type="password" id="reg-password" required minlength="6">
+                </div>
+                
+                <div class="form-group">
+                    <label for="reg-password-confirm">Подтвердите пароль *</label>
+                    <input type="password" id="reg-password-confirm" required minlength="6">
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="reg-agreement" required>
+                    <label for="reg-agreement">Регистрируясь вы соглашаетесь на <a href="terms.html" target="_blank">условия сервиса и обработку персональных данных</a> *</label>
+                </div>
+                
+                <button type="submit" class="form-submit">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/api-integration.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

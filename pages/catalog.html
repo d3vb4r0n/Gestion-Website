@@ -19,15 +19,23 @@
                     </div>
                 </div>
                 
-                <div class="auth-section">
-                    <form class="auth-form" onsubmit="return false;">
-                        <input type="email" placeholder="Email" id="login-email">
+                <div class="auth-section" id="auth-section">
+                    <!-- Форма входа (показывается когда НЕ авторизован) -->
+                    <form class="auth-form" id="login-form" onsubmit="handleLogin(event)" style="display: none;">
+                        <input type="text" placeholder="Username или Email" id="login-username">
                         <input type="password" placeholder="Пароль" id="login-password">
                         <div class="auth-actions">
                             <a href="#" onclick="openRegistrationModal(); return false;">Регистрация</a>
                             <input type="submit" value="Войти">
                         </div>
                     </form>
+                    
+                    <!-- Информация о пользователе (показывается когда авторизован) -->
+                    <div class="user-info" id="user-info" style="display: none;">
+                        <span class="user-greeting">Привет, <strong id="user-name">Пользователь</strong>!</span>
+                        <button onclick="handleLogout()" class="btn-logout">Выйти</button>
+                    </div>
+                    
                     <div class="search-section">
                         <div class="search-box">
                             <input type="text" placeholder="Поиск по сайту..." id="search">
@@ -57,7 +65,7 @@
                 <!-- Сайдбар -->
                 <aside class="sidebar">
                     <nav>
-                        <a href="../index.html">Главная</a>
+                        <a href="mainpage.html">Главная</a>
                         <a href="about.html">О нас</a>
                         <a href="catalog.html" class="active">Каталог услуг</a>
                         <a href="contacts.html">Контакты</a>
@@ -76,86 +84,7 @@
                     <div id="corporate" class="services-category">
                         <h2>Корпоративное право</h2>
                         <div class="services-grid">
-                            <!-- Услуга 1 -->
-                            <div class="service-card">
-                                <div class="service-card__image">
-                                    <img src="../images/yuri.jpg" alt="Логотип Гестион">
-                                </div>
-                                <div class="service-card-content">
-                                    <h3>Регистрация бизнеса</h3>
-                                    <p class="service-card-price">от 15 000 ₽</p>
-                                    <p class="service-card-brief">Полное юридическое сопровождение регистрации ООО, ИП, АО</p>
-                                </div>
-                                <div class="service-card-details">
-                                    <div>
-                                        <h3>Регистрация бизнеса</h3>
-                                        <p><strong>Цена:</strong> от 15 000 ₽</p>
-                                        <p>Комплексная услуга по регистрации юридических лиц и индивидуальных предпринимателей.</p>
-                                        <ul>
-                                            <li>Подготовка документов</li>
-                                            <li>Подача в налоговую</li>
-                                            <li>Получение выписки ЕГРЮЛ/ЕГРИП</li>
-                                            <li>Открытие расчетного счета</li>
-                                        </ul>
-                                        <p><strong>Срок:</strong> 5-7 рабочих дней</p>
-                                    </div>
-                                    <button class="order-button" onclick="orderService('Регистрация бизнеса')">Заказать услугу</button>
-                                </div>
-                            </div>
-
-                            <!-- Услуга 2 -->
-                            <div class="service-card">
-                                <div class="service-card__image">
-                                    <img src="../images/corp.jpg" alt="Логотип Гестион">
-                                </div>
-                                <div class="service-card-content">
-                                    <h3>Корпоративные договоры</h3>
-                                    <p class="service-card-price">от 20 000 ₽</p>
-                                    <p class="service-card-brief">Разработка и проверка договоров для бизнеса</p>
-                                </div>
-                                <div class="service-card-details">
-                                    <div>
-                                        <h3>Корпоративные договоры</h3>
-                                        <p><strong>Цена:</strong> от 20 000 ₽</p>
-                                        <p>Профессиональная подготовка любых корпоративных договоров с учетом специфики вашего бизнеса.</p>
-                                        <ul>
-                                            <li>Договоры поставки</li>
-                                            <li>Договоры подряда</li>
-                                            <li>Агентские договоры</li>
-                                            <li>Лицензионные соглашения</li>
-                                        </ul>
-                                        <p><strong>Срок:</strong> 3-5 рабочих дней</p>
-                                    </div>
-                                    <button class="order-button" onclick="orderService('Корпоративные договоры')">Заказать услугу</button>
-                                </div>
-                            </div>
-
-                            <!-- Услуга 3 -->
-                            <div class="service-card">
-                                <div class="service-card__image">
-                                    <img src="../images/arbsud.webp" alt="Логотип Гестион">
-                                </div>
-                                <div class="service-card-content">
-                                    <h3>Арбитражные споры</h3>
-                                    <p class="service-card-price">от 50 000 ₽</p>
-                                    <p class="service-card-brief">Представительство в арбитражных судах</p>
-                                </div>
-                                <div class="service-card-details">
-                                    <div>
-                                        <h3>Арбитражные споры</h3>
-                                        <p><strong>Цена:</strong> от 50 000 ₽</p>
-                                        <p>Защита интересов вашей компании в арбитражных судах всех инстанций.</p>
-                                        <ul>
-                                            <li>Взыскание задолженности</li>
-                                            <li>Споры по договорам</li>
-                                            <li>Корпоративные конфликты</li>
-                                            <li>Налоговые споры</li>
-                                        </ul>
-                                        <p><strong>Срок:</strong> зависит от сложности дела</p>
-                                    </div>
-                                    <button class="order-button" onclick="orderService('Арбитражные споры')">Заказать услугу</button>
-                                </div>
-                            </div>
+                            <!-- Товары загружаются из БД через catalog-loader.js -->
                         </div>
                     </div>
 
@@ -163,86 +92,7 @@
                     <div id="family" class="services-category">
                         <h2>Семейное право</h2>
                         <div class="services-grid">
-                            <!-- Услуга 4 -->
-                            <div class="service-card">
-                                <div class="service-card__image">
-                                    <img src="../images/brakdog.webp" alt="Логотип Гестион">
-                                </div>
-                                <div class="service-card-content">
-                                    <h3>Брачный договор</h3>
-                                    <p class="service-card-price">от 10 000 ₽</p>
-                                    <p class="service-card-brief">Составление и нотариальное заверение брачного договора</p>
-                                </div>
-                                <div class="service-card-details">
-                                    <div>
-                                        <h3>Брачный договор</h3>
-                                        <p><strong>Цена:</strong> от 10 000 ₽</p>
-                                        <p>Защитите имущественные интересы с помощью грамотно составленного брачного договора.</p>
-                                        <ul>
-                                            <li>Консультация юриста</li>
-                                            <li>Составление проекта договора</li>
-                                            <li>Согласование условий</li>
-                                            <li>Сопровождение у нотариуса</li>
-                                        </ul>
-                                        <p><strong>Срок:</strong> 2-3 рабочих дня</p>
-                                    </div>
-                                    <button class="order-button" onclick="orderService('Брачный договор')">Заказать услугу</button>
-                                </div>
-                            </div>
-
-                            <!-- Услуга 5 -->
-                            <div class="service-card">
-                                <div class="service-card__image">
-                                    <img src="../images/razvod.webp" alt="Логотип Гестион">
-                                </div>
-                                <div class="service-card-content">
-                                    <h3>Развод и раздел имущества</h3>
-                                    <p class="service-card-price">от 25 000 ₽</p>
-                                    <p class="service-card-brief">Юридическое сопровождение бракоразводного процесса</p>
-                                </div>
-                                <div class="service-card-details">
-                                    <div>
-                                        <h3>Развод и раздел имущества</h3>
-                                        <p><strong>Цена:</strong> от 25 000 ₽</p>
-                                        <p>Профессиональная помощь в расторжении брака и справедливом разделе совместно нажитого имущества.</p>
-                                        <ul>
-                                            <li>Подготовка иска о разводе</li>
-                                            <li>Раздел имущества</li>
-                                            <li>Представительство в суде</li>
-                                            <li>Определение места жительства детей</li>
-                                        </ul>
-                                        <p><strong>Срок:</strong> от 1 месяца</p>
-                                    </div>
-                                    <button class="order-button" onclick="orderService('Развод и раздел имущества')">Заказать услугу</button>
-                                </div>
-                            </div>
-
-                            <!-- Услуга 6 -->
-                            <div class="service-card">
-                                <div class="service-card__image">
-                                    <img src="../images/babydengi.png" alt="Логотип Гестион">
-                                </div>
-                                <div class="service-card-content">
-                                    <h3>Алименты и опека</h3>
-                                    <p class="service-card-price">от 15 000 ₽</p>
-                                    <p class="service-card-brief">Взыскание алиментов, оформление опеки</p>
-                                </div>
-                                <div class="service-card-details">
-                                    <div>
-                                        <h3>Алименты и опека</h3>
-                                        <p><strong>Цена:</strong> от 15 000 ₽</p>
-                                        <p>Защита прав детей и законных интересов родителей в вопросах алиментов и опеки.</p>
-                                        <ul>
-                                            <li>Взыскание алиментов</li>
-                                            <li>Изменение размера алиментов</li>
-                                            <li>Оформление опеки</li>
-                                            <li>Лишение родительских прав</li>
-                                        </ul>
-                                        <p><strong>Срок:</strong> 2-4 недели</p>
-                                    </div>
-                                    <button class="order-button" onclick="orderService('Алименты и опека')">Заказать услугу</button>
-                                </div>
-                            </div>
+                            <!-- Товары загружаются из БД через catalog-loader.js -->
                         </div>
                     </div>
 
@@ -250,86 +100,7 @@
                     <div id="civil" class="services-category">
                         <h2>Гражданское право</h2>
                         <div class="services-grid">
-                            <!-- Услуга 7 -->
-                            <div class="service-card">
-                                <div class="service-card__image">
-                                    <img src="../images/nedviga.jpg" alt="Логотип Гестион">
-                                </div>
-                                <div class="service-card-content">
-                                    <h3>Сделки с недвижимостью</h3>
-                                    <p class="service-card-price">от 30 000 ₽</p>
-                                    <p class="service-card-brief">Юридическое сопровождение купли-продажи недвижимости</p>
-                                </div>
-                                <div class="service-card-details">
-                                    <div>
-                                        <h3>Сделки с недвижимостью</h3>
-                                        <p><strong>Цена:</strong> от 30 000 ₽</p>
-                                        <p>Безопасные сделки с недвижимостью под контролем опытных юристов.</p>
-                                        <ul>
-                                            <li>Проверка чистоты сделки</li>
-                                            <li>Подготовка договора</li>
-                                            <li>Сопровождение регистрации</li>
-                                            <li>Представительство в Росреестре</li>
-                                        </ul>
-                                        <p><strong>Срок:</strong> 7-10 рабочих дней</p>
-                                    </div>
-                                    <button class="order-button" onclick="orderService('Сделки с недвижимостью')">Заказать услугу</button>
-                                </div>
-                            </div>
-
-                            <!-- Услуга 8 -->
-                            <div class="service-card">
-                                <div class="service-card__image">
-                                    <img src="../images/blackmoney.jpg" alt="Логотип Гестион">
-                                </div>
-                                <div class="service-card-content">
-                                    <h3>Наследственные дела</h3>
-                                    <p class="service-card-price">от 20 000 ₽</p>
-                                    <p class="service-card-brief">Оформление наследства, споры о наследстве</p>
-                                </div>
-                                <div class="service-card-details">
-                                    <div>
-                                        <h3>Наследственные дела</h3>
-                                        <p><strong>Цена:</strong> от 20 000 ₽</p>
-                                        <p>Помощь в получении наследства и разрешении наследственных споров.</p>
-                                        <ul>
-                                            <li>Оформление наследства</li>
-                                            <li>Составление завещания</li>
-                                            <li>Споры о наследстве</li>
-                                            <li>Восстановление сроков принятия наследства</li>
-                                        </ul>
-                                        <p><strong>Срок:</strong> от 6 месяцев</p>
-                                    </div>
-                                    <button class="order-button" onclick="orderService('Наследственные дела')">Заказать услугу</button>
-                                </div>
-                            </div>
-
-                            <!-- Услуга 9 -->
-                            <div class="service-card">
-                                <div class="service-card__image">
-                                    <img src="../images/otborbabla.jpg" alt="Логотип Гестион">
-                                </div>
-                                <div class="service-card-content">
-                                    <h3>Взыскание долгов</h3>
-                                    <p class="service-card-price">от 18 000 ₽</p>
-                                    <p class="service-card-brief">Взыскание задолженности в судебном порядке</p>
-                                </div>
-                                <div class="service-card-details">
-                                    <div>
-                                        <h3>Взыскание долгов</h3>
-                                        <p><strong>Цена:</strong> от 18 000 ₽</p>
-                                        <p>Эффективное взыскание долгов через суд и исполнительное производство.</p>
-                                        <ul>
-                                            <li>Досудебная претензия</li>
-                                            <li>Подача иска в суд</li>
-                                            <li>Представительство в суде</li>
-                                            <li>Сопровождение исполнительного производства</li>
-                                        </ul>
-                                        <p><strong>Срок:</strong> от 2 месяцев</p>
-                                    </div>
-                                    <button class="order-button" onclick="orderService('Взыскание долгов')">Заказать услугу</button>
-                                </div>
-                            </div>
+                            <!-- Товары загружаются из БД через catalog-loader.js -->
                         </div>
                     </div>
 
@@ -407,6 +178,9 @@
         </div>
     </div>
 
+    <script src="../js/api-integration.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/catalog-loader.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

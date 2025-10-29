@@ -111,6 +111,40 @@ header {
     background-color: #333333;
 }
 
+/* User Info (после входа) */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.user-greeting {
+    color: #F5EEE5;
+    font-size: 14px;
+}
+
+.user-greeting strong {
+    color: #ffffff;
+}
+
+.btn-logout {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s;
+}
+
+.btn-logout:hover {
+    background-color: #333333;
+}
+
 /* Поиск */
 .search-section {
     margin-top: 15px;
@@ -257,15 +291,12 @@ header {
 }
 
 .services-grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    flex-wrap: wrap;
 }
 
 .service-card {
-    flex: 1;
-    min-width: 280px;
-    max-width: 350px;
     background-color: #F5EEE5;
     border-radius: 8px;
     overflow: hidden;
@@ -562,10 +593,11 @@ footer {
 
 .footer-content {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 40px;
+    text-align: center;
 }
 
 .footer-info {
