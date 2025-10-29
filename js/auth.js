@@ -65,8 +65,9 @@ async function handleLogin(event) {
         
         const userData = await response.json();
         
-        // Сохраняем данные пользователя
+        // Сохраняем данные пользователя в обоих местах для совместимости
         localStorage.setItem('currentUser', JSON.stringify(userData));
+        localStorage.setItem('user', JSON.stringify(userData));
         
         // Обновляем UI
         updateAuthUI();
@@ -74,8 +75,6 @@ async function handleLogin(event) {
         // Очищаем форму
         usernameInput.value = '';
         passwordInput.value = '';
-        
-        alert(`Добро пожаловать, ${userData.username}!`);
         
     } catch (error) {
         console.error('Login error:', error);
@@ -87,14 +86,15 @@ async function handleLogin(event) {
 function handleLogout() {
     if (confirm('Вы уверены, что хотите выйти?')) {
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('user');
         updateAuthUI();
-        alert('Вы вышли из системы');
     }
 }
 
 // Получить текущего пользователя
 function getCurrentUser() {
-    const userJson = localStorage.getItem('currentUser');
+    // Проверяем оба ключа для обратной совместимости
+    const userJson = localStorage.getItem('currentUser') || localStorage.getItem('user');
     if (!userJson) return null;
     
     try {
@@ -102,6 +102,7 @@ function getCurrentUser() {
     } catch (e) {
         console.error('Error parsing user data:', e);
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('user');
         return null;
     }
 }

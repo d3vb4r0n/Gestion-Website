@@ -38,7 +38,8 @@ async function registerUser(formData) {
     const data = {
         username: formData.get('username'),
         email: formData.get('email'),
-        password: formData.get('password')
+        password: formData.get('password'),
+        phoneNumber: formData.get('phone')
     };
     
     try {
@@ -47,9 +48,15 @@ async function registerUser(formData) {
             body: JSON.stringify(data)
         });
         
-        alert(`Регистрация успешна! Добро пожаловать, ${response.username}`);
-        // Сохраняем данные пользователя
+        // Сохраняем данные пользователя в обоих местах для совместимости
         localStorage.setItem('user', JSON.stringify(response));
+        localStorage.setItem('currentUser', JSON.stringify(response));
+        
+        // Обновляем UI если доступна функция
+        if (typeof updateAuthUI === 'function') {
+            updateAuthUI();
+        }
+        
         window.location.href = '/index.html';
     } catch (error) {
         alert(`Ошибка регистрации: ${error.message}`);
@@ -69,8 +76,15 @@ async function loginUser(formData) {
             body: JSON.stringify(data)
         });
         
-        alert(`Вход выполнен! Добро пожаловать, ${response.username}`);
+        // Сохраняем данные пользователя в обоих местах для совместимости
         localStorage.setItem('user', JSON.stringify(response));
+        localStorage.setItem('currentUser', JSON.stringify(response));
+        
+        // Обновляем UI если доступна функция
+        if (typeof updateAuthUI === 'function') {
+            updateAuthUI();
+        }
+        
         window.location.href = '/index.html';
     } catch (error) {
         alert(`Ошибка входа: ${error.message}`);

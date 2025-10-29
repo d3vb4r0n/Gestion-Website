@@ -13,6 +13,37 @@ function closeRegistrationModal() {
     }
 }
 
+// Автозаполнение формы контакта для авторизованных пользователей
+function autofillFeedbackForm() {
+    // Проверяем наличие авторизованного пользователя
+    const currentUser = getCurrentUser ? getCurrentUser() : null;
+    
+    if (currentUser) {
+        // Заполняем поля формы если они существуют
+        const nameInput = document.getElementById('feedback-name');
+        const emailInput = document.getElementById('feedback-email');
+        const phoneInput = document.getElementById('feedback-phone');
+        
+        if (nameInput && currentUser.username) {
+            nameInput.value = currentUser.username;
+            nameInput.readOnly = true;
+            nameInput.style.backgroundColor = '#f0f0f0';
+        }
+        
+        if (emailInput && currentUser.email) {
+            emailInput.value = currentUser.email;
+            emailInput.readOnly = true;
+            emailInput.style.backgroundColor = '#f0f0f0';
+        }
+        
+        if (phoneInput && currentUser.phoneNumber) {
+            phoneInput.value = currentUser.phoneNumber;
+            phoneInput.readOnly = true;
+            phoneInput.style.backgroundColor = '#f0f0f0';
+        }
+    }
+}
+
 // Закрытие модального окна при клике вне его
 window.onclick = function(event) {
     const modal = document.getElementById('registrationModal');
@@ -49,6 +80,7 @@ async function handleRegistration(event) {
         const formData = new FormData();
         formData.set('username', name);
         formData.set('email', email);
+        formData.set('phone', phone);
         formData.set('password', password);
         
         if (typeof registerUser === 'function') {
@@ -58,7 +90,6 @@ async function handleRegistration(event) {
             event.target.reset();
         } else {
             // Фоллбэк если api-integration.js не загружен
-            alert('Спасибо за регистрацию, ' + name + '!\nПисьмо с подтверждением отправлено на ' + email);
             closeRegistrationModal();
             event.target.reset();
         }
@@ -115,6 +146,9 @@ function orderService(serviceName) {
 
 // Плавная прокрутка к якорям
 document.addEventListener('DOMContentLoaded', function() {
+    // Автозаполнение формы контакта для авторизованных пользователей
+    autofillFeedbackForm();
+    
     // Обработка якорей на странице каталога
     if (window.location.hash) {
         setTimeout(function() {

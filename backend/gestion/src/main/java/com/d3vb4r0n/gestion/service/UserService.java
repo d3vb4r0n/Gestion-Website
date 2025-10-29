@@ -35,10 +35,15 @@ public class UserService {
             throw new UserAlreadyExistsException("Email already exists");
         }
         
+        if (userRepository.existsByPhoneNumber(request.getPhoneNumber())) {
+            throw new UserAlreadyExistsException("Phone number already exists");
+        }
+        
         // Создание нового пользователя
         User user = new User();
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
+        user.setPhoneNumber(request.getPhoneNumber());
         user.setPasswordHash(passwordEncoder.encode(request.getPassword()));
         user.setRole(UserRole.USER);
         user.setIpAddress(ipAddress);
@@ -89,6 +94,7 @@ public class UserService {
         response.setId(user.getId());
         response.setUsername(user.getUsername());
         response.setEmail(user.getEmail());
+        response.setPhoneNumber(user.getPhoneNumber());
         response.setRole(user.getRole().toString());
         response.setCreatedAt(user.getCreatedAt());
         response.setLastLogin(user.getLastLogin());
